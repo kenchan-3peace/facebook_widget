@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-// test
-
 class Home extends StatelessWidget {
   final Logger logger = Logger(); 
   Home({Key? key}) : super(key: key);

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/gestures.dart';
 
 class Home extends StatelessWidget {
   final Logger logger = Logger(); 
-  Home({Key? key}) : super(key: key);
+  Home({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+    child: Column(
       children: [
         Padding(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Row(
@@ -636,6 +638,174 @@ class Home extends StatelessWidget {
           ),
         ),
         const Divider(thickness: 5,),
+      Column(
+        children: [
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10,),
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage('https://is1-ssl.mzstatic.com/image/thumb/AMCArtistImages126/v4/b8/37/b6/b837b65d-54ba-d815-ae08-6cfaac729036/3b193ebd-5511-4a3d-9f62-47cf35ab9571_ami-identity-472474680bd88a1215cc5b5571e08a16-2023-11-10T14-25-06.547Z_cropped.png/190x190cc.webp'),
+                    ),
+                  ),
+                ),
+                const Padding(padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Text('大門 弥生', style: TextStyle(fontWeight: FontWeight.bold),),
+                      Row(
+                        children: [
+                          Text('3日前・',style: TextStyle(color: Colors.grey),),
+                          Icon(Icons.public,size: 15, color: Colors.grey,)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                const Icon(Icons.more_horiz,size: 25,),
+                const SizedBox(
+                  width: 25,
+                ),
+                const Icon(Icons.close,size: 25,),
+              ],
+            ),
+          ),
+          const Padding(padding: EdgeInsetsDirectional.symmetric(horizontal: 10,vertical: 5),
+            child: FaceBookText('大門弥生YouTubeChannelでスペシャルセッション🎬第一回目の後編🎤HOUSE SESSION CONCERT「ウタダイモン -スナック弥生-」後編９月２５日（金）２１：００〜こんな時代だからもっと音楽を楽しもう！'),
+          ),
+          Image.network('https://pbs.twimg.com/media/Eiv2L9QUcAAYUsu.jpg:large'),
+          Row(
+            children: [
+              Padding(padding: const EdgeInsets.only(top:5, left: 10),
+                child: Container(
+                  width: 15,
+                  height: 15,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage('images/good.png'),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(padding: EdgeInsets.only(top:5, left: 10),
+                child: Text('100', style: TextStyle(color:  Color.fromARGB(255, 72, 72, 72)),),
+              ),
+              const Spacer(),
+              const Padding(padding: EdgeInsets.only(top:5, right: 10),
+                child: Text('コメント10件・シェア100件', style: TextStyle(color: Color.fromARGB(255, 72, 72, 72)),),
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.zero,
+            child: const Divider(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: () {
+                debugPrint('test');
+              },
+              icon: const Icon(Icons.thumb_up_off_alt_outlined, size: 20,), 
+              label: const Text('いいね！', style: TextStyle(fontSize: 12),), 
+            ),
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: () {
+                debugPrint('test');
+              },
+              icon: Image.asset('images/comment.png', width: 25, height: 25,),
+              label: const Text('コメント', style: TextStyle(fontSize: 12),), 
+            ),
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
+                
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: () {
+                debugPrint('test');
+              },
+              icon: const Icon(Icons.share, size: 20),
+              label: const Text('シェア', style: TextStyle(fontSize: 12),), 
+            ),
+          ],
+        ),
+          const Divider(thickness: 5,),
+        ],
+      ),
+      ],
+    ),
+    );
+  }
+}
+class FaceBookText extends StatefulWidget {
+  final String text;
+  final int maxCharacters;
+
+  const FaceBookText(
+    this.text, {
+    super.key,
+    this.maxCharacters = 40, 
+  });
+
+  @override
+  FaceBookTextState createState() => FaceBookTextState();
+}
+
+class FaceBookTextState extends State<FaceBookText> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+         if (widget.text.length > widget.maxCharacters)
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: _expanded ? widget.text : widget.text.substring(0, widget.maxCharacters),
+                  style: const TextStyle(color: Colors.black),
+                ),
+                TextSpan(
+                  text: _expanded ? '' : '... ',
+                  style: const TextStyle(color: Colors.black),
+                ),
+                TextSpan(
+                  text: _expanded ? '' : 'もっと見る ',
+                  style: const TextStyle(color:  Color.fromARGB(255, 72, 72, 72)),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      setState(() {
+                        _expanded = true;
+                      });
+                    },
+                ),
+              ],
+            ),
+          ),
+          if (widget.text.length <= widget.maxCharacters)
+            Text(widget.text),
       ],
     );
   }

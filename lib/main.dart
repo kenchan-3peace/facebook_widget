@@ -1,6 +1,7 @@
 import 'package:facebook_widget/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,23 +39,38 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Facebook_Logo_%282019%29.svg/1280px-Facebook_Logo_%282019%29.svg.png', width: 150,) ,
         actions:[
-          IconButton(
-            icon: const Icon(Icons.add_circle, color: Colors.black,),
-            onPressed: () {
-              logger.i('１が押された');
-            }
+          GestureDetector(
+            onTap:(){
+              Fluttertoast.showToast(
+                msg: 'AppBarの＋アイコンを押しました！',
+                fontSize: 18,
+              );
+            },
+            child: const Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Icon(Icons.add_circle, color: Colors.black,),
+            ) 
           ),
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.black,),
-            onPressed: () {
-              logger.i('2が押された');
-            }
+          GestureDetector(
+            onTap:(){
+              Fluttertoast.showToast(
+                msg: 'AppBarのサーチアイコンを押しました！',
+                fontSize: 18,
+              );
+            },
+            child: const Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Icon(Icons.search, color: Colors.black,),
+            ),
           ),
-          IconButton(
-            icon: Image.network('https://www.iconpacks.net/icons/2/free-facebook-messenger-icon-2882-thumb.png', width: 23,),
-            onPressed: () {
-              logger.i('3が押された');
-            }
+          GestureDetector(
+            onTap:(){
+              Fluttertoast.showToast(
+                msg: 'AppBarのメッセンジャーアイコンを押しました！',
+                fontSize: 18,
+              );
+            },
+            child: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Image.network('https://www.iconpacks.net/icons/2/free-facebook-messenger-icon-2882-thumb.png', width: 23,),
+            ),
           ),
         ],
         bottom: const TabBar(

@@ -14,7 +14,15 @@ class Home extends StatelessWidget {
         Padding(padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Row(
           children:[
-            const Icon(Icons.account_circle, size: 40,),
+            GestureDetector(
+            onTap:(){
+              Fluttertoast.showToast(
+                msg: 'アカウントアイコンを押しました！',
+                fontSize: 18,
+              );
+            },
+            child: const Icon(Icons.account_circle, size: 40,),
+            ),
             Expanded(child: 
             SizedBox(
               height: 30,
@@ -24,14 +32,25 @@ class Home extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                 ),
                 onPressed: () {
-                  logger.i('１が押された');
+                  Fluttertoast.showToast(
+                  msg: 'その気持ち、シェアしようを押しました！',
+                  fontSize: 16,
+                );
                 }, 
                 child: const Text('その気持ち、シェアしよう'),
               ),
             ),
             ),
-            const Padding(padding: EdgeInsets.only(left: 15),
+            GestureDetector(
+            onTap:(){
+              Fluttertoast.showToast(
+                msg: 'イメージアイコンを押しました！',
+                fontSize: 18,
+              );
+            },
+            child: const Padding(padding: EdgeInsets.only(left: 15),
                child: Icon(Icons.filter, size: 25, color: Colors.green),
+            ),
             ),
             ],
           ),

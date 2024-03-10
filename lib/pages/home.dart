@@ -689,7 +689,60 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                const Icon(Icons.more_horiz,size: 25,),
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container( 
+                          constraints: BoxConstraints(
+                             maxHeight: MediaQuery.of(context).size.height * 0.9,
+                          ),
+                          // height: MediaQuery.of(context).size.height * 0.9,
+                          child: SingleChildScrollView(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(padding: const EdgeInsets.symmetric(vertical: 5),
+                                child: Container(
+                                  width: 50,
+                                  height: 5,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                ),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const Text('ここのレイアウト後日作成する'),
+                                const SizedBox(height: 20),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // モーダルを閉じる
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            ),
+                          ),
+                          ),
+                        );
+                      }
+                    );
+                  },
+                child: const Icon(Icons.more_horiz,size: 25,),
+                ),
                 const SizedBox(
                   width: 25,
                 ),
@@ -726,49 +779,36 @@ class Home extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.zero,
-            child: const Divider(),
+            margin: const EdgeInsets.only(top:10),
+            child: const Divider(height: 0,),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          const Row(
             children: [
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
-                padding: EdgeInsets.zero,
+              Expanded(
+              child: IconWithText(
+                  icon: Icons.thumb_up_off_alt_outlined,
+                  text: 'いいね!',
               ),
-              onPressed: () {
-                debugPrint('test');
-              },
-              icon: const Icon(Icons.thumb_up_off_alt_outlined, size: 20,), 
-              label: const Text('いいね！', style: TextStyle(fontSize: 12),), 
-            ),
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
-                padding: EdgeInsets.zero,
               ),
-              onPressed: () {
-                debugPrint('test');
-              },
-              icon: Image.asset('images/comment.png', width: 25, height: 25,),
-              label: const Text('コメント', style: TextStyle(fontSize: 12),), 
-            ),
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 72, 72, 72), 
-                
-                padding: EdgeInsets.zero,
+              Expanded(
+              child: IconWithText(
+                  text: 'コメント!',
+                  img: true,
+                  imgPath: 'images/comment.png',
               ),
-              onPressed: () {
-                debugPrint('test');
-              },
-              icon: const Icon(Icons.share, size: 20),
-              label: const Text('シェア', style: TextStyle(fontSize: 12),), 
-            ),
+              ),
+              Expanded(
+              child: IconWithText(
+                  icon: Icons.share,
+                  text: 'シェア',
+              ),
+              ),
           ],
         ),
-          const Divider(thickness: 5,),
+          Container(
+            margin: const EdgeInsets.only(top:5),
+            child: const Divider(thickness: 5,height: 0,),
+          ),
         ],
       ),
       ],
@@ -826,6 +866,75 @@ class FaceBookTextState extends State<FaceBookText> {
           if (widget.text.length <= widget.maxCharacters)
             Text(widget.text),
       ],
+    );
+  }
+}
+
+
+class IconWithText extends StatefulWidget {
+  final IconData? icon;
+  final String text;
+  final String imgPath;
+  final bool img;
+
+  const IconWithText({
+    super.key,
+    this.icon,
+    required this.text,
+    this.img = false,
+    this.imgPath = '',
+  });
+
+  @override
+IconWithTextState createState() => IconWithTextState();
+}
+
+class IconWithTextState extends State<IconWithText> {
+  bool isSelected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTapDown: (details) {
+        setState(() {
+          isSelected = true;
+          Fluttertoast.showToast(
+            msg: '${widget.text} を押しました！',
+            fontSize: 18,
+          );
+        });
+      },
+      onTapUp: (details) {
+        setState(() {
+          isSelected = false;
+        });
+      },
+      onTapCancel: () {
+        setState(() {
+          isSelected = false;
+        });
+      },
+      child: Container(
+        height: 40,
+        color: isSelected ? Colors.grey : null,
+          child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (widget.icon == null)
+              Center(
+                child: Image.asset(widget.imgPath, width: 25, height: 25,)
+              )
+            else
+              Center(
+                child: Icon(widget.icon, size: 20),
+              ),
+            const SizedBox(width: 5),
+            Center(
+              child: Text(widget.text, style: const TextStyle(fontSize: 12)),
+            ),
+          ],
+          ),
+      ),
     );
   }
 }

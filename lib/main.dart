@@ -68,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                 fontSize: 18,
               );
             },
-            child: Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Image.network('https://www.iconpacks.net/icons/2/free-facebook-messenger-icon-2882-thumb.png', width: 23,),
             ),
           ),

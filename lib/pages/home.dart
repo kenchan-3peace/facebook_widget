@@ -692,51 +692,222 @@ class Home extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
+                      backgroundColor: const Color.fromARGB(255, 234, 234, 241),
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
                         return Container( 
+                          width: double.infinity,
                           constraints: BoxConstraints(
                              maxHeight: MediaQuery.of(context).size.height * 0.9,
                           ),
-                          // height: MediaQuery.of(context).size.height * 0.9,
-                          child: SingleChildScrollView(
-                          child: Center(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
+                              children: [
                                 Padding(padding: const EdgeInsets.symmetric(vertical: 5),
-                                child: Container(
-                                  width: 50,
-                                  height: 5,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(10),
+                                  child: Container(
+                                    width: 50,
+                                    height: 5,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                const Expanded(
+                                  child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      FractionallySizedBox(
+                                        widthFactor: 0.9,
+                                        child: Card(
+                                          color: Colors.white,
+                                          margin: EdgeInsets.all(5),
+                                          child: Padding(padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('この投稿が表示される理由', style: TextStyle(color: Colors.blue),),
+                                                Text('大門弥生さんをフォロー中です'),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      FractionallySizedBox(
+                                        widthFactor: 0.9,
+                                        child: Card(
+                                          color: Colors.white,
+                                          margin: EdgeInsets.all(5),
+                                          child: Padding(padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.add_circle, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('表示を増やす', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                          Text('このような投稿の表示が多くなります。'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                children: [
+                                                  Icon(Icons.remove_circle, size: 25,),
+                                                  SizedBox(width: 10,),
+                                                  Flexible(
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text('表示を減らす', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                        Text('このような投稿の表示が少なくなります。'),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      FractionallySizedBox(
+                                        widthFactor: 0.9,
+                                        child: Card(
+                                          color: Colors.white,
+                                          margin: EdgeInsets.all(5),
+                                          child: Padding(padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.bookmark, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('投稿を保存', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                          Text('保存済みのアイテムにこのアイテムを追加します。'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.disabled_by_default_sharp, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('投稿を非表示', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                          Text('このような投稿の表示が少なくなります。'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.feedback, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('投稿を報告', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                          Text('誰が報告したのかは⚪︎⚪︎⚪︎⚪︎⚪︎⚪︎さんに通知されません。'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.notifications, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('この投稿に関するお知らせをオンにする。', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.flip_to_front, size: 25,),
+                                                    SizedBox(width: 10,),
+                                                    Flexible(
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('リンクをコピー', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      FractionallySizedBox(
+                                        widthFactor: 0.9,
+                                        child: Card(
+                                          color: Colors.white,
+                                          margin: EdgeInsets.all(5),
+                                          child: Padding(padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                                Text('テスト用のテキストシートの高さが９０％になったらスクロールする実装'),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 ),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const Text('ここのレイアウト後日作成する'),
-                                const SizedBox(height: 20),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // モーダルを閉じる
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text('Close'),
-                                ),
                               ],
                             ),
-                          ),
-                          ),
                         );
                       }
                     );
